@@ -14,15 +14,20 @@ namespace UnicamMath
             Console.Write("Inserisci la lunghezza del secondo cateto: ");
             string cateto2Testuale = Console.ReadLine();
 
-            double ipotenusa = 0;
+            double.TryParse(cateto1Testuale, out double cateto1);
+            double.TryParse(cateto2Testuale, out double cateto2);
+            double ipotenusa = Math.Sqrt(Math.Pow(cateto1,2) + Math.Pow(cateto2,2));
             double angolo1 = 90;
-            double angolo2 = 0;
-            double angolo3 = 0;
-
-            //TO DO
-
-            Console.WriteLine($"L'ipotenusa misura {ipotenusa}");
-            Console.WriteLine($"I tre angoli interni misurano {angolo1} gradi, {angolo2} gradi e {angolo3} gradi.");
+            double divisione;
+            if(cateto1>cateto2){
+            divisione = Math.Sin(cateto2/cateto1);
+            }else {
+            divisione = Math.Sin(cateto1/cateto2);  
+            }
+            double angolo2 = ((Math.Asin(divisione)*180)/Math.PI);
+            double angolo3 = angolo1 - angolo2;
+            Console.WriteLine($"L'ipotenusa misura {Math.Round(ipotenusa,2)}");
+            Console.WriteLine($"I tre angoli interni misurano {Math.Round(angolo1,2)} gradi, {Math.Round(angolo2,2)} gradi e {Math.Round(angolo3,2)} gradi.");
 
             Console.ReadKey();
         }
